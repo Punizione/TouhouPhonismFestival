@@ -22,18 +22,14 @@ def require_auth(func):
             try:
                 decoded = jwt.decode(token, app.config['SECRET_KEY'], algorithms="HS256")
             except jwt.DecodeError:
-                abort(400)
+                abort(401)
             except jwt.ExpiredSignatureError:
-                abort(400)
+                abort(401)
             if not decoded['token']:
                 abort(401)
             else:
-                token = None #Todo  decoded['token']
-                if not token:
-                    abort(401)
-                else:
-                    g.token = token
-                    g.difficulty = decoded['difficulty']
-                    g.randomID = decoded['randomID']
-                    return func(*args, **kwargs)
-
+                token = decoded['token']
+                g.token = token
+                g.difficulty = decoded['difficulty']
+                return func(*args, **kwargs)
+    return wrapper
