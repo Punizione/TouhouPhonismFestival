@@ -3,18 +3,20 @@ from __future__ import unicode_literals
 import os
 
 COMPLETE = 'complete'
-HAVE_NEXT = 'have_next'
-END = 'end'
+HAVE_NEXT = True
+END = False
 
-INFO_PATH_PREFIX = os.getcwd() + '/'
+SUCCESS = 'success'
+
+INFO_PATH_PREFIX = os.getcwd() + '\\' + 'App\\conf' + '\\'
 INFO_PATH_SUFFIX = '.json'
 
 
-MUSIC_PATH_PREFIX = os.getcwd() + '/'
+MUSIC_PATH_PREFIX = os.getcwd() + '\\' + 'App\\music' + '\\'
 MUSIC_PATH_SUFFIX = '.mp3'
 
 
-MUSIC_FRAGMENT_PATH = os.getcwd() + '/'
+MUSIC_FRAGMENT_PATH = os.getcwd() + '\\' + 'App\\temp' + '\\'
 MUSIC_FILE_FORMAT = '.mp3'
 
 BEGIN = 5000
@@ -27,6 +29,7 @@ DIFFICULTY_LUNATIC = 'lunatic'
 DIFFICULTY_EXTRA = 'extra'
 
 
+
 DIFFICULTY_LEVEL = {
 	DIFFICULTY_EASY: 10,
 	DIFFICULTY_NORMAL: 7,
@@ -37,4 +40,11 @@ DIFFICULTY_LEVEL = {
 
 SECOND = 1000
 
-SUCCESS = 'success'
+
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = 6379
+REDIS_DB = 0
+REDIS_DB_QUESTION = 1
+REDIS_DB_CHECK = 2
+
+CORRECT = 'correct'
