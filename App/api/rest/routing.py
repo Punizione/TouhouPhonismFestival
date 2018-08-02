@@ -64,6 +64,10 @@ class Submit(SecureResource):
 		if _next ==  Constants.COMPLETE:
 			flag = Constants.END
 			_next = TestCommon.getResult(g)
+		elif _next == Constants.EXPIRED:
+			return {
+				'retCode': Constants.EXPIRED
+			}
 		return {
 			'retCode': Constants.SUCCESS,
 			'haveNext': flag,

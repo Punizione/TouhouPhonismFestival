@@ -7,7 +7,7 @@ HAVE_NEXT = True
 END = False
 
 SUCCESS = 'success'
-
+EXPIRED = 'expired'
 INFO_PATH_PREFIX = os.getcwd() + '\\' + 'App\\conf' + '\\'
 INFO_PATH_SUFFIX = '.json'
 
