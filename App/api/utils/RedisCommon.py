@@ -25,6 +25,7 @@ checkInstance = redis.Redis(connection_pool=checkPool)
 def saveQuestion(token, li):
 	for item in li:
 		questionInstance.rpush(token, item)
+	questionInstance.expire(token, 60*40)
 
 def getQuestion(token):
 	questionList = questionInstance.lrange(token, 0, -1)
