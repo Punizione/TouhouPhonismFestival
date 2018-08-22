@@ -20,7 +20,7 @@
         default: false
       },
       ended: {
-        rtpe: Function,
+        type: Function,
         default:() => {}
       },
       canPlay: {
