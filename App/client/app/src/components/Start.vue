@@ -263,6 +263,6 @@
       'e1': 'changeBgImage'
     },
     
-    name: 'HelloWorld'
+    name: 'Start'
   }
 </script>

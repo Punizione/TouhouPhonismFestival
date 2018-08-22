@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import store from '@/store/store'
 import * as types from '@/store/types'
 
-import HelloWorld from '@/components/HelloWorld'
+import Start from '@/components/Start'
 import Exam from '@/components/Exam'
 Vue.use(Router)
 
@@ -15,8 +15,8 @@ const router = new Router({
   routes: [
     {
       path: '/start',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Start',
+      component: Start
     },
     {
       path: '/exam',
