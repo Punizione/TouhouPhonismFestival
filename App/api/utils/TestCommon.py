@@ -12,7 +12,6 @@ class TestCommon():
 	@classmethod
 	def randomStart(cls, token, typ, difficulty, length):
 		li = cls.genQuestionList(typ, length)
-		#TODO
 		"""
 		保存li内容到redis
 		"""
@@ -23,7 +22,6 @@ class TestCommon():
 	def nextQuestion(cls, answer, g):
 		token = g.token
 		difficulty = g.difficulty
-		#TODO
 		"""
 		从redis中取出余下问题链接和答案结果链接
 		"""
@@ -34,13 +32,11 @@ class TestCommon():
 		result = cls.check(questionList[len(checkList)], answer)
 		if result:
 			correct += 1
-			#TODO
 			"""
 				保存分数，答对题数
 			"""
 			RedisCommon.saveCorrect(token, correct)
 
-		#TODO
 		"""
 			答题内容
 		"""
@@ -55,7 +51,6 @@ class TestCommon():
 	def getResult(cls, g):
 		token = g.token
 		difficulty = g.difficulty
-		#TODO
 		"""
 			从redis中取出所有问题链接和答案结果链接与评分
 		"""

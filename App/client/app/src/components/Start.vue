@@ -147,7 +147,7 @@
               :value="true"
               type="success"
             >
-              Type : {{typ}}
+              Type : {{ parseType(typ) }}
             </v-alert>
             <v-layout row>
               <v-flex xs6>
@@ -188,6 +188,11 @@
         '50'
       ],
       typ: ['1','2','3'],
+      typMap: {
+        '1': '整数作(不含黑历史)',
+        '2': '小数点作',
+        '3': '秘封厨专用'
+      },
       bgImage: "http://p0s30qphu.bkt.clouddn.com/18-7-2/5372312.jpg"
     }),
     methods: {
@@ -244,6 +249,13 @@
             this.e1 = 2
           }
         }
+      },
+      parseType(typ) {
+        let str = ''
+        for (var i = 0; i <typ.length ; i++) {
+          str += this.typMap[typ[i]] + ","
+        }
+        return str.substring(0,str.length-1)
       }
     },
     watch: {
