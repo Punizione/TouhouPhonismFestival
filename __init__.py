@@ -9,6 +9,7 @@ app = Flask(__name__, static_url_path='')
 # Flask-Security
 app.config['SECRET_KEY'] = "Delitto"
 app.config['SECURITY_TOKEN_AUTHENTICATION_HEADER'] = "Delitto"
+app.config['SECURITY_TOKEN_HOUR'] = 2
 
 # Database
 
