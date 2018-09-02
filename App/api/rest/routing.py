@@ -34,7 +34,7 @@ class Start(BaseResource):
 			从redis中获取ip信息映射,
 
 		''' 
-		exp = datetime.datetime.utcnow() + datetime.timedelta(hours=app.config['SECURITY_TOKEN_USER_HOUR'])
+		exp = datetime.datetime.utcnow() + datetime.timedelta(hours=app.config['SECURITY_TOKEN_HOUR'])
 		token = hashlib.md5((ip+randomID).encode('utf8')).hexdigest()
 		encode = jwt.encode({
 			'token': token,
