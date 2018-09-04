@@ -24,7 +24,7 @@ class Start(BaseResource):
 		difficulty = jsonPayload['difficulty']
 		randomID = jsonPayload['randomID']
 		typ = jsonPayload['typ']
-		#token = request.headers['X-Forwarded-For']
+		#token = request.headers['X-Forwarded-For']  # use with nginx
 		#token is ip
 		ip = request.remote_addr
 		length = jsonPayload['length']
@@ -72,6 +72,20 @@ class Submit(SecureResource):
 			'retCode': Constants.SUCCESS,
 			'haveNext': flag,
 			'next': _next
+		}
+
+@rest_resource
+class Ranking(BaseResource):
+	""" /api/rank """
+	endpoints = ['rank']
+	def post(self):
+		jsonPayload = request.json
+		difficulty = jsonPayload['difficulty']
+
+		result = TestCommon.getRanking(difficulty)
+		return {
+			'retCode': Constants.SUCCESS,
+			'data': result
 		}
 
 
