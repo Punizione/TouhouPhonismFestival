@@ -4,7 +4,15 @@
       app
       :clipped-left="clipped"
     >
-    <v-toolbar-title v-text="title"></v-toolbar-title>
+      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn icon @click.stop='rankDialog = !rankDialog'>
+        <v-icon>sort</v-icon>
+      </v-btn>
+      <v-btn icon @click.stop="helpDialog = !helpDialog">
+        <v-icon>help</v-icon>
+      </v-btn>
+    
     </v-toolbar>
     <v-content>
       <v-container fluid fill-height class="px-0 py-0">
@@ -20,6 +28,63 @@
     <v-footer :fixed="fixed" app>
       <span>&copy; 2017</span>
     </v-footer>
+    <v-dialog
+      v-model="rankDialog"
+      scrollable fullscreen 
+      persistent :overlay="false"
+      transition="dialog-transition"
+    >
+      <v-card>
+        <v-toolbar >
+          <v-btn icon @click.native="rankDialog = false">
+          <v-icon>close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Ranking</v-toolbar-title>
+        </v-toolbar>
+        <v-tabs
+          slider-color="yellow"
+        >
+          <v-tab
+            v-for="n in diffList"
+            :key="n"
+            ripple
+          >
+            {{ n }}
+          </v-tab>
+          <v-tab-item
+            v-for="n in diffList"
+            :key="n"
+          >
+            <v-data-table
+              :headers="headers"
+              :items="rankItem[n]"
+              hide-actions
+              class="elevation-1"
+              disable-initial-sort
+      
+            >
+              
+            </v-data-table>
+          </v-tab-item>
+        </v-tabs>
+      </v-card>
+    </v-dialog>
+    <v-dialog
+      v-model="helpDialog"
+      scrollable fullscreen 
+      persistent :overlay="false"
+      transition="dialog-transition"
+    >
+      <v-card>
+        <v-toolbar >
+          <v-btn icon @click.native="helpDialog = false">
+          <v-icon>close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Help</v-toolbar-title>
+        </v-toolbar>
+
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -29,12 +94,39 @@ export default {
       isRouterAlive: true,
       clipped: false,
       fixed: false,
+      rankDialog: false,
+      helpDialog: false,
+      diffList: [
+        "Easy", "Normal", "Hard", "Lunatic", "Extra"
+      ],
+      rankItem: {
+        'Easy': [],
+        'Normal': [],
+        'Hard': [],
+        'Lunatic': [],
+        'Extra': []
+      },
+      headers: [
+        { text: "昵称", value: '昵称'}, 
+        { text: '正确数', value: '正确数'}
+      ],
       title: 'Vuetify.js'
   }),
   methods: {
     reload() {
       this.isRouterAlive = false
       this.$nextTick(() => (this.isRouterAlive = true))
+    },
+    getRank(difficulty) {
+      this.axios.post('/api/rank', {
+        "difficulty": difficulty
+      }).then((response) => {
+        if (response.status == 200) {
+          if (response.data.retCode == 'success') {
+
+          }
+        }
+      })
     }
   },
   name: 'App'
