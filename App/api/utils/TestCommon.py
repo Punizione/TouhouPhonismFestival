@@ -58,6 +58,8 @@ class TestCommon():
 		correct = RedisCommon.getCorrect(token)
 		checkList = RedisCommon.getCheck(token)
 
+		RedisCommon.saveRanking(token, difficulty)
+
 		retList = []
 		for i in range(len(questionList)):
 			retList.append({
@@ -80,8 +82,12 @@ class TestCommon():
 
 
 	@classmethod
-	def savePlayer(cls,token, name):
+	def savePlayer(cls, token, name):
 		RedisCommon.savePlayer(token, name)
+
+	@classmethod
+	def getRank(cls, difficulty):
+		return RedisCommon.getRanking(difficulty)
 
 
 
