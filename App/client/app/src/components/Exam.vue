@@ -121,32 +121,6 @@ export default {
         { sname: '03', code: '10002'},
         { sname: '04', code: '10003'},
         { sname: '05', code: '10004'}
-      ]},
-      { tname: '妖妖梦', sub: [
-        { sname: '01', code: '10000'},
-        { sname: '02', code: '10001'},
-        { sname: '03', code: '10002'},
-        { sname: '04', code: '10003'},
-        { sname: '05', code: '10004'}
-      ]},
-      { tname: '永夜抄', sub: [
-        { sname: '01', code: '10000'},
-        { sname: '02', code: '10001'},
-        { sname: '03', code: '10002'},
-        { sname: '04', code: '10003'},
-        { sname: '05', code: '10004'}
-      ]},
-      { tname: '', sub: [
-        { sname: '01', code: '10000'},
-        { sname: '02', code: '10001'},
-        { sname: '03', code: '10002'},
-        { sname: '04', code: '10003'},
-        { sname: '05', code: '10004'},
-        { sname: '01', code: '10000'},
-        { sname: '02', code: '10001'},
-        { sname: '03', code: '10002'},
-        { sname: '04', code: '10003'},
-        { sname: '05', code: '10004'}
       ]}
     ],
     noEmpty: [
@@ -191,6 +165,9 @@ export default {
               this.checkA = ''
               this.code = ''
               this.$refs.form.reset()
+            } else if(response.data.retCode == 'expired'){
+              console.log(response.data)
+
             } else {
               console.log(response.data)
               this.result = true
