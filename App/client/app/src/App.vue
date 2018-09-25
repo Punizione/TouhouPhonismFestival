@@ -61,10 +61,13 @@
               hide-actions
               class="elevation-1"
               disable-initial-sort
-      
             >
-              
+              <template slot="items" slot-scope="props">
+                <td>{{ props.item.name }}</td>
+                <td>{{ props.item.grade }}</td>
+              </template>
             </v-data-table>
+
           </v-tab-item>
         </v-tabs>
       </v-card>
@@ -110,7 +113,7 @@ export default {
         { text: "昵称", value: '昵称'}, 
         { text: '正确数', value: '正确数'}
       ],
-      title: 'Vuetify.js'
+      title: 'PhonismFestival'
   }),
   methods: {
     reload() {
@@ -122,8 +125,8 @@ export default {
         "difficulty": difficulty
       }).then((response) => {
         if (response.status == 200) {
-          if (response.data.retCode == 'success') {
-
+          if (response.data.retCode) {
+            this.rankItem[difficulty] = response.data.data
           }
         }
       })

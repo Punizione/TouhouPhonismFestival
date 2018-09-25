@@ -9,8 +9,6 @@ import store from './store/store'
 import axios from './utils/http'
 
 import VueAxios from 'vue-axios'
-import Aplayer from 'vue-aplayer'
-
 import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(VueAxios, axios)

@@ -59,7 +59,8 @@ class TestCommon():
 		checkList = RedisCommon.getCheck(token)
 
 		RedisCommon.saveRanking(token, difficulty)
-
+		if len(questionList) >=50:
+			saveRank(token, difficulty)
 		retList = []
 		for i in range(len(questionList)):
 			retList.append({
@@ -88,6 +89,10 @@ class TestCommon():
 	@classmethod
 	def getRank(cls, difficulty):
 		return RedisCommon.getRanking(difficulty)
+
+	@classmethid
+	def saveRank(cls, token, difficulty):
+		RedisCommon.saveRank(token, difficulty)
 
 
 
