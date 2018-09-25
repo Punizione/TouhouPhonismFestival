@@ -66,6 +66,11 @@
                 <td>{{ props.item.name }}</td>
                 <td>{{ props.item.grade }}</td>
               </template>
+              <template slot="no-data">
+                <v-alert :value="true" color="error" icon="warning">
+                  目前还没有dalao上榜 :(
+                </v-alert>
+              </template>
             </v-data-table>
 
           </v-tab-item>

@@ -67,7 +67,6 @@ class TestCommon():
 				"q": questionList[i].decode('utf8'),
 				"a": checkList[i].decode('utf8')
 			})
-		# ,"correct": correct
 		return {
 			"data": retList
 		}
