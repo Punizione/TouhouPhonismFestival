@@ -59,7 +59,7 @@ class TestCommon():
 		checkList = RedisCommon.getCheck(token)
 
 		RedisCommon.saveRanking(token, difficulty)
-		if len(questionList) >=50:
+		if len(questionList) == 50:
 			saveRank(token, difficulty)
 		retList = []
 		for i in range(len(questionList)):
