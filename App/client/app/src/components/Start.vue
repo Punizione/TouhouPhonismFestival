@@ -1,6 +1,6 @@
 <template>
   <v-content style="height: 100%">
-     <v-jumbotron :src="bgImage" style="height: 100%">
+    <v-img :src="bgImage" style="height: 100%">
       <v-stepper v-model="e1" class="transparent">
         <v-stepper-header>
           <v-stepper-step :complete="e1 > 1" step="1">Step1</v-stepper-step>
@@ -166,7 +166,7 @@
           </v-stepper-content>
         </v-stepper-items>
       </v-stepper>
-    </v-jumbotron> 
+    </v-img> 
   </v-content>
 </template>
 

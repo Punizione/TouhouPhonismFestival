@@ -19,7 +19,6 @@
           </span>
         </v-layout>
         <v-layout align-start justify-center row>
-            
             <v-btn fab dark large color="purple" @click.stop='sheet = !sheet' :disable="selectDisable">
               <v-icon dark>android</v-icon>
             </v-btn>
@@ -30,8 +29,8 @@
         </v-layout>
         <v-layout align-start justify-center row fill-height>
           <div id="container" ref="container">
+            <!-- inject Live2d view conponent-->
             <live2dviewer></live2dviewer>
-            <!-- <canvas id="glcanvas" style="height: 100%"></canvas> -->
           </div>
         </v-layout>
         <v-dialog v-model="sheet" fullscreen scrollable hide-overlay transition="dialog-bottom-transition">
@@ -95,8 +94,6 @@
 </template>
 <script>
 import * as types from '@/store/types'
-//import '@/utils/live2d.min.js'
-//import * as Live2DHelper from '@/utils/live2d-helper.min.js'
 import Live2DView from '@/components/Live2DView'
 import vueplayer from '@/components/VuePlayer.vue'
 export default {
@@ -153,6 +150,7 @@ export default {
       this.custom = true
       this.selectDisable = true
       this.nextDisable = true
+      this.playerDisable = true
       this.axios.post("/api/next", {
         answer: this.code
       }).then((response) => {
@@ -160,7 +158,7 @@ export default {
         if (response.status == 200) {
           if (response.data.retCode == 'success') {
             if (response.data.haveNext) {
-              this.defaultMusic.src = 'http://localhost:5000/music/'+response.data.next+'.mp3'
+              this.defaultMusic.src = '/music/'+response.data.next+'.mp3'
               this.qCurrent = this.qCurrent+1
               this.checkA = ''
               this.code = ''
@@ -175,6 +173,7 @@ export default {
             }
             this.selectDisable = false
             this.nextDisable = false
+            this.playerDisable = false
           } else {
             console.log(response.data.retCode)
           }
@@ -193,11 +192,11 @@ export default {
     }
   },
   created() {
-    this.defaultMusic.src = 'http://localhost:5000/music/'+this.$route.query.question+'.mp3'
+    this.defaultMusic.src = '/music/'+this.$route.query.question+'.mp3'
     this.qLength = this.$route.query.len
     // this.loadList()
   },
-  mouted() {
+  mounted() {
   },
   components: {
     'vueplayer': vueplayer,

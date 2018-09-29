@@ -65,7 +65,8 @@ def saveRanking(token, difficulty):
 	correct = getCorrect(token)
 	player = getPlayer(token)
 	# reverse command with score and member in Redis-Py
-	# zadd `key` `score` `member`
+	# zadd `key` `score` `member` in redis
+	# zadd `key` `member` `score` in Redis-Py
 	rankInstance.zadd(difficulty, player, correct)
 	'''
 	ranking always save top 10
