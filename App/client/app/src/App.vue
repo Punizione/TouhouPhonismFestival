@@ -90,7 +90,14 @@
           </v-btn>
           <v-toolbar-title>Help</v-toolbar-title>
         </v-toolbar>
-
+        <v-flex xs12>
+          <v-alert color="success" :value="true" icon="new_releases">
+            只有通过50题才可保存记录和排名
+          </v-alert>
+          <v-alert color="success" :value="true" icon="new_releases">
+            只有通过50题才可保存记录和排名
+          </v-alert>
+        </v-flex>
       </v-card>
     </v-dialog>
   </v-app>
@@ -130,12 +137,19 @@ export default {
         "difficulty": difficulty
       }).then((response) => {
         if (response.status == 200) {
-          if (response.data.retCode) {
+          if (response.data.retCode == 'success') {
             this.rankItem[difficulty] = response.data.data
           }
         }
       })
     }
+  },
+  mounted() {
+    this.getRank('Easy');
+    this.getRank('Normal');
+    this.getRank('Hard');
+    this.getRank('Lunatic');
+    this.getRank('Extra');
   },
   name: 'App'
 }
